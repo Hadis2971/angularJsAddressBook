@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Address Book</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="angularJS.js"></script>
+        <script src="ngStorage.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div id="container" ng-app="addressBook" ng-controller="addressBookCtrl">
+            <div id="hdr">
+                <h1 style="display: inline-block">Address Book</h1>
+                <input type="text" id="search" ng-model="search" placeholder="Search...">
+            </div>
+            <div id="button">
+                <button ng-click="toggleClassInfoForm()" id="add_btn">+Add</button>
+            </div>
+            <form id="infoForm" class="slide_up">
+                <div id="name_box">
+                    <h4 class="title_basic_style">Name</h4>
+                    <p  class="input_para_basic_style">
+                       <input type="text" ng-model="name">
+                    </p>
+                </div>
+                <div id="phone_box">
+                    <h4 class="title_basic_style">Phone Number</h4>
+                    <p  class="input_para_basic_style">
+                       <input type="text" ng-model="phone">
+                    </p>
+                </div>
+                 <div id="address_box">
+                    <h4 class="title_basic_style" style="vertical-align: top;">Adress</h4>
+                    <p  class="input_para_basic_style">
+                       <textarea ng-model="address" id="address"></textarea>
+                    </p>
+                </div>
+                <div id="city_box">
+                    <h4 class="title_basic_style">City</h4>
+                    <p  class="input_para_basic_style">
+                       <input type="text" ng-model="city">
+                    </p>
+                </div>
+                <div id="email_box">
+                    <h4 class="title_basic_style">Email</h4>
+                    <p  class="input_para_basic_style">
+                       <input type="text" ng-model="email">
+                    </p>
+                </div>
+                <div id="button_box">
+                    <button ng-click="addEntrie()">Add Now</button>
+                    <button ng-click="cancelEntrie()">Cancel</button>
+                </div>
+            </form>
+            <table id="table_box">
+                <tr style="margin-bottom: 0.03em;">
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Email</th>
+                </tr>
+                <tr ng-repeat="x in addressEntries | filter: search" class="tr_style">
+                    <td class="td_style">{{x.name}}</td>
+                    <td class="td_style">{{x.phone}}</td>
+                    <td class="td_style">{{x.address}}</td>
+                    <td class="td_style">{{x.city}}</td>
+                    <td class="td_style">{{x.email}}</td>
+                    <td ng-click="removeEntrie($index)" class="span_style">&times;</td>
+                </tr>
+                
+            </table>
+        </div>
+        
+        <script src="main.js"></script>
+    </body>
+</html>
